@@ -1,3 +1,4 @@
+#include <windows.h>  
 #include <iostream>
 using namespace std;
 int f(int n){
@@ -24,14 +25,25 @@ int h(int n){
     return s;
 }
 int main(){
+	//cout<<char(9733);
+	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
+    SetConsoleTextAttribute(handle, FOREGROUND_RED);	 	
     int N;
     cin>>N;
+    int x = (h(N) - h(0))/2;
+	for(int i = 0; i < x; i++) cout<<' ';
+    cout<<"*"<<endl;
+    SetConsoleTextAttribute(handle, FOREGROUND_GREEN);	
     for(int n = 0; n <= N; n++){
         int m = (h(N) - h(n));
         for(int i = 0; i < m/2; i++) cout<<' ';
         for(int k = 0; k <= n; k++){
+        	if (k % 2 == 1 && k != n){
+        		SetConsoleTextAttribute(handle, FOREGROUND_RED);
+			}
             cout<<C(n, k)<<' ';
+            SetConsoleTextAttribute(handle, FOREGROUND_GREEN);
         }
-        cout<<endl;
+        cout<<endl<<endl;
     } 
 }
