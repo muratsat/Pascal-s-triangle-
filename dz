@@ -1,0 +1,72 @@
+class Person:
+    def __init__(self, name):
+        self.name = name
+    def info(self):
+        print ('Name of person:', self.name, sep = '')
+
+class Dog:
+    def __init__(self, name):
+        self.name = name
+        self.age = 0
+        self.weight = 0
+    def info(self):
+         print ('Name of dog:', self.name, sep = '')
+         print ('Age of dog:', self.age, sep = '')
+         print ('Weight if dog:', self.weight, seo = '')
+    def growup(self):
+        self.age += 1
+    def eat(self, nutrition):
+        self.weight += nutrition
+
+class Rabbit:
+    def __init__(self):
+        self.age = 0;
+        self.weight = 0;
+    def info(self, n):
+        print ('Rabbit', n)
+        print ('Age of rabbit:', self.age, sep = '')
+        print ('Weight if rabbit:', self.weight, sep = '')
+    def growup(self):
+        self.age += 1
+        if self.age < 6:
+                self.weight += 1
+
+class Meat:
+    def __init__(self, nutrition):
+        self.nutrition = nutrition
+    def info(self, n):
+        print ('Nuriton:', self.nutrition, sep = '')
+
+person = []
+dog = []
+rabbit = []
+meat = [] 
+def Command(command):
+    word = command.split()
+    
+    if word[0] == 'create':
+        if word[1] == 'person':
+            person.append(Person(word[2]))
+            dog.append(Dog(word[4]))
+        if word[1] == 'rabbit':
+            rabbit.append(Rabbit())
+
+    elif word[0] == 'growup':
+        dog[0].growup()
+        for rab in rabbit:
+            rab.growup()
+
+    elif word == 'print':
+        person[0].info()
+        dog[0].info()
+        i = 1
+        for rab in rabbit:
+            rab.info(i)
+            i += 1
+
+
+n = int(input())
+for i in range(0, n):
+    cmd = str(input())
+    Command(cmd)
+
